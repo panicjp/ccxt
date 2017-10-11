@@ -17093,6 +17093,7 @@ var okcoin = {
     'hasFetchOHLCV': true,
     'hasFetchOrder': true,
     'hasFetchOrders': true,
+    'contract_type': 'this_week', // this_week, next_week, quarter
     'timeframes': {
         '1m': '1min',
         '3m': '3min',
@@ -17178,7 +17179,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type; // next_week, quarter
         }
         method += 'Depth';
         let orderbook = await this[method] (this.extend (request, params));
@@ -17222,7 +17223,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type;
         }
         method += 'Ticker';
         let response = await this[method] (request);
@@ -17257,7 +17258,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type;
         }
         method += 'Trades';
         let response = await this[method] (this.extend (request, params));
@@ -17273,7 +17274,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type;
         }
         method += 'Kline';
         if (limit)
@@ -17313,7 +17314,7 @@ var okcoin = {
         if (market['future']) {
             method += 'Future';
             order = this.extend (order, {
-                'contract_type': 'this_week', // next_week, quarter
+                'contract_type': this.contract_type,
                 'match_price': 0, // match best counter party price? 0 or 1, ignores price if 1
                 'lever_rate': 10, // leverage rate value: 10 or 20 (10 by default)
                 'price': price,
@@ -17418,7 +17419,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type;
         }
         method += 'OrderInfo';
         let response = await this[method] (this.extend (request, params));
@@ -17439,7 +17440,7 @@ var okcoin = {
         };
         if (market['future']) {
             method += 'Future';
-            request['contract_type'] = 'this_week'; // next_week, quarter
+            request['contract_type'] = this.contract_type;
         }
         method += 'OrdersInfo';
         let response = await this[method] (this.extend (request, params));
